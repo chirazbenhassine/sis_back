@@ -29,13 +29,16 @@ public class SecuriteApplication {
 		return args -> {
 			userService.saveRole(new Role(null, "ROLE_USER"));
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
+			userService.saveRole(new Role(null, "ROLE_CLIENT"));
 
 
-			userService.saveUser(new User(null, "Isaac abdelli", "Isaac", "1234", new ArrayList<>()));
-			userService.saveUser(new User(null, "Bilel Tijaou", "Bilel", "1234", new ArrayList<>()));
+			userService.saveUser(new User(null, "Abdelli", "Isaac", "Isaacabd","1234", new ArrayList<>()));
+			userService.saveUser(new User(null, "Tijaou", "Bilel","Bileltj", "1234", new ArrayList<>()));
+			userService.saveUser(new User(null, "Ben Hassine", "Ali","Alibh", "1234", new ArrayList<>()));
 
-			userService.addRoleToUser("Isaac", "ROLE_USER");
-			userService.addRoleToUser("Bilel", "ROLE_ADMIN");
+			userService.addRoleToUser("Isaacabd", "ROLE_USER");
+			userService.addRoleToUser("Bileltj", "ROLE_ADMIN");
+			userService.addRoleToUser("Alibh", "ROLE_CLIENT");
 
 		};
 	}
