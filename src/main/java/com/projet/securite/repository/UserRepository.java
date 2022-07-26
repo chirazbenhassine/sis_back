@@ -1,0 +1,1 @@
+package com.projet.securite.repository;import com.projet.securite.domain.User;import org.springframework.data.jpa.repository.JpaRepository;public interface UserRepository extends JpaRepository<User, Long> {    User findByUsername(String username);}
