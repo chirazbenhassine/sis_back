@@ -1,0 +1,1 @@
+package com.projet.securite.domain.dto.user;import lombok.*;import java.io.Serializable;import java.util.Collection;@NoArgsConstructor@AllArgsConstructor@Getter@Setterpublic class UserDto implements Serializable {    private String nom;    private String prenom;    private String username;    private Collection<String> roles;}
