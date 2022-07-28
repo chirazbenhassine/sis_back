@@ -1,8 +1,8 @@
 package com.projet.securite;
 
-import com.projet.securite.domain.Role;
-import com.projet.securite.domain.User;
-import com.projet.securite.service.UserService;
+import com.projet.securite.authUser.model.Role;
+import com.projet.securite.authUser.model.User;
+import com.projet.securite.authUser.serviceUser.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

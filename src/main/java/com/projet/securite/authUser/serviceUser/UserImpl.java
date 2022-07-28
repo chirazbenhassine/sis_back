@@ -1,7 +1,7 @@
-package com.projet.securite.service;
+package com.projet.securite.authUser.serviceUser;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.projet.securite.domain.User;
+import com.projet.securite.authUser.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.projet.securite.security;
+package com.projet.securite.authUser.security;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
