@@ -1,9 +1,12 @@
 package com.projet.securite.api.service;
 
 import com.projet.securite.api.exception.RessourceNotFoundException;
+import com.projet.securite.api.model.Pointeau;
 import com.projet.securite.api.model.Ronds;
 import com.projet.securite.api.model.Site;
+import com.projet.securite.api.repository.PointeauRepository;
 import com.projet.securite.api.repository.RondRepository;
+import com.projet.securite.authUser.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.Optional;
 public class RondServiceImpl implements RondService{
 
     private RondRepository rondRepository;
+    //private PointeauRepository pointeauRepository;
     public RondServiceImpl(RondRepository rondRepository) {
         super();
         this.rondRepository = rondRepository;
@@ -44,7 +48,7 @@ public class RondServiceImpl implements RondService{
         //need to check if site  with given id is exist in DB or not
         Ronds existingRond = rondRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Rond","Id", id));
 
-        existingRond.setNomRond(ronds.getNomRond());
+        existingRond.setName(ronds.getName());
 
         //Save in DB
         rondRepository.save(existingRond);
@@ -58,4 +62,11 @@ public class RondServiceImpl implements RondService{
         rondRepository.deleteById(id);
 
     }
+
+   /* @Override
+    public void addPointeauToRond(String rondName, String pointeauName) {
+        Ronds rond=rondRepository.findByName(rondName);
+        Pointeau pointeau=pointeauRepository.findByName(pointeauName);
+        rond.getPointeaux().add(pointeau);
+    }*/
 }

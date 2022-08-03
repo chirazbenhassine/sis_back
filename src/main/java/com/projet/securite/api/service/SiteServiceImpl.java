@@ -44,7 +44,7 @@ public class SiteServiceImpl implements  SiteService{
         //need to check if site  with given id is exist in DB or not
         Site existingSite = siteRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Site","Id", id));
 
-        existingSite.setNomSite(site.getNomSite());
+        existingSite.setName(site.getName());
         existingSite.setAdresse(site.getAdresse());
         //Save in DB
         siteRepository.save(existingSite);

@@ -45,14 +45,14 @@ public class PointeauServiceImpl implements  PointeauService{
         //need to check if pointeau  with given id is exist in DB or not
         Pointeau existingPointeau = pointeauRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Pointeau","Id", id));
 
-        existingPointeau.setNomPointeau(pointeau.getNomPointeau());
+        existingPointeau.setName(pointeau.getName());
 
         //Save in DB
         pointeauRepository.save(existingPointeau);
         return existingPointeau;
     }
 
-    @Override
+   @Override
     public void deletePoiteau(Long id) {
         //Check if pointeau exist with given id  is exist in DB
         Pointeau  existingPointeau = pointeauRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Pointeau","Id", id));

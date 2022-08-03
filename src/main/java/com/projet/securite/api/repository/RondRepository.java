@@ -4,4 +4,5 @@ import com.projet.securite.api.model.Ronds;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RondRepository extends JpaRepository<Ronds, Long> {
+    Ronds findByName(String name);
 }
