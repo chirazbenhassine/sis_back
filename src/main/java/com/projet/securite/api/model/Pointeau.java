@@ -15,11 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="Pointeau")
-public class Pointeau {
+public class Pointeau implements Serializable {
     @Id //specifies to primary key of the entity
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "nom_de_pointeaux", nullable = false)
+    @Column(name = "nom_de_pointeaux")
     private String name;
 
 

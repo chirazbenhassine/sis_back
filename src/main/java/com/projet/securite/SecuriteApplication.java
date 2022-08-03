@@ -44,7 +44,7 @@ public class SecuriteApplication {
 		//rondService.addPointeauToRond(rond.getName(),pointeau.getName());
 		//rond.getPointeaux().add(pointeau);*/
 	@Bean
-	CommandLineRunner run(UserService userService,SiteService siteService) {
+	CommandLineRunner run(UserService userService,SiteService siteService, RondService rondService, PointeauService pointeauService) {
 		return args -> {
 			userService.saveRole(new Role(null, "ROLE_USER"));
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
@@ -64,6 +64,16 @@ public class SecuriteApplication {
 
 			userService.addSiteToUser("Alibh", "Auchan");
 			userService.addSiteToUser("Bileltj", "Carrefour");
+
+
+			pointeauService.savePointeau(new Pointeau(null,"pointeau1"));
+			pointeauService.savePointeau(new Pointeau(null,"pointeau2"));
+
+			rondService.saveRond(new Ronds(null,"rond1",new ArrayList<>()));
+			rondService.saveRond(new Ronds(null,"rond2",new ArrayList<>()));
+
+			rondService.addPointeauToRond("rond1","pointeau2");
+			rondService.addPointeauToRond("rond1","pointeau1");
 
 
 

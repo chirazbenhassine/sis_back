@@ -6,21 +6,24 @@ import com.projet.securite.api.model.Ronds;
 import com.projet.securite.api.model.Site;
 import com.projet.securite.api.repository.PointeauRepository;
 import com.projet.securite.api.repository.RondRepository;
+import com.projet.securite.authUser.model.Role;
 import com.projet.securite.authUser.model.User;
+import com.projet.securite.authUser.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class RondServiceImpl implements RondService{
 
-    private RondRepository rondRepository;
-    //private PointeauRepository pointeauRepository;
-    public RondServiceImpl(RondRepository rondRepository) {
-        super();
-        this.rondRepository = rondRepository;
-    }
+
+    private final RondRepository rondRepository;
+    private  final PointeauRepository pointeauRepository;
 
     @Override
     public Ronds saveRond(Ronds ronds) {
@@ -60,6 +63,22 @@ public class RondServiceImpl implements RondService{
         //Check if site exist with given id  is exist in DB
         Ronds existingSite = rondRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Site","Id", id));
         rondRepository.deleteById(id);
+
+    }
+
+    @Override
+    public void addPointeauToRond(String rondName, String pointeauName) {
+        Ronds rond = rondRepository.findByName(rondName);
+        Pointeau pointeau= pointeauRepository.findByName(pointeauName);
+            rond.getPointeaux().add(pointeau);
+
+
+        /* Rond==user
+        pointe=role
+
+        User user = userRepo.findByUsername(username);
+        Role role = roleRepo.findByName(roleName);
+        user.getRoles().add(role);*/
 
     }
 

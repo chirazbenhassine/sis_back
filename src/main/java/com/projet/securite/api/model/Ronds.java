@@ -16,18 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="Rond")
-public class Ronds {
+public class Ronds implements Serializable {
         @Id //specifies to primary key of the entity
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
-        @Column(name = "nom_de_rond", nullable = false)
         private String name;
 
-       /* @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-        @JoinTable(name = "pointeau_rond",
-                joinColumns = @JoinColumn(name = "rond_id", referencedColumnName = "id"),
-                inverseJoinColumns = @JoinColumn(name = "pointeaux_id", referencedColumnName = "id"))
-        private Collection<Pointeau> pointeaux = new ArrayList<>();*/
+       @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+       private Collection<Pointeau> pointeaux = new ArrayList<>();
 
 
     }
