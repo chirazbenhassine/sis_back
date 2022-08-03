@@ -44,14 +44,11 @@ public class SecuriteApplication {
 		//rondService.addPointeauToRond(rond.getName(),pointeau.getName());
 		//rond.getPointeaux().add(pointeau);*/
 	@Bean
-	CommandLineRunner run(UserService userService) {
+	CommandLineRunner run(UserService userService,SiteService siteService) {
 		return args -> {
 			userService.saveRole(new Role(null, "ROLE_USER"));
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 			userService.saveRole(new Role(null, "ROLE_CLIENT"));
-
-			//siteService.saveSite(new Site(null,"Auchan","Sartrouville"));
-			//siteService.saveSite(new Site(null,"Carrefour","Paris"));
 
 			userService.saveUser(new User(null, "Abdelli", "Isaac", "Isaacabd","1234", new ArrayList<>(), new ArrayList<>()));
 			userService.saveUser(new User(null, "Tijaou", "Bilel","Bileltj", "1234", new ArrayList<>(), new ArrayList<>()));
@@ -62,9 +59,12 @@ public class SecuriteApplication {
 			userService.addRoleToUser("Bileltj", "ROLE_ADMIN");
 			userService.addRoleToUser("Alibh", "ROLE_CLIENT");
 
-			/*userService.addSiteToUser("Alibh", "Auchan");
-			userService.addSiteToUser("Isaacabd", "Auchan");
-			userService.addRoleToUser("Bileltj", "Carrefour");*/
+			siteService.saveSite(new Site(null,"Auchan","Sartrouville"));
+			siteService.saveSite(new Site(null,"Carrefour","Paris"));
+
+			userService.addSiteToUser("Alibh", "Auchan");
+			userService.addSiteToUser("Bileltj", "Carrefour");
+
 
 
 
