@@ -6,21 +6,27 @@ import com.projet.securite.api.model.Ronds;
 import com.projet.securite.api.model.Site;
 import com.projet.securite.api.repository.PointeauRepository;
 import com.projet.securite.api.repository.RondRepository;
+import com.projet.securite.api.repository.SiteRepository;
+import com.projet.securite.authUser.model.Role;
 import com.projet.securite.authUser.model.User;
+import com.projet.securite.authUser.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class RondServiceImpl implements RondService{
 
-    private RondRepository rondRepository;
-    //private PointeauRepository pointeauRepository;
-    public RondServiceImpl(RondRepository rondRepository) {
-        super();
-        this.rondRepository = rondRepository;
-    }
+
+    private final RondRepository rondRepository;
+    private  final PointeauRepository pointeauRepository;
+
+
 
     @Override
     public Ronds saveRond(Ronds ronds) {
@@ -43,13 +49,21 @@ public class RondServiceImpl implements RondService{
         return rondRepository.findById(id).orElseThrow(()-> new RessourceNotFoundException("Rond","Id", id));
     }
 
+   /*@Override
+   public Ronds getRond(String name) {
+       Optional<Ronds> rond = rondRepository.findById(name);
+
+       return rondRepository.findByName(name).orElseThrow(()-> new RessourceNotFoundException("Rond","name", name));
+    }*/
+
     @Override
     public Ronds updateRond(Ronds ronds, Long id) {
         //need to check if site  with given id is exist in DB or not
         Ronds existingRond = rondRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Rond","Id", id));
-
-        existingRond.setName(ronds.getName());
-
+        String name = ronds.getName();
+        if (name != null && name != ""){
+            existingRond.setName(ronds.getName());
+        }
         //Save in DB
         rondRepository.save(existingRond);
         return existingRond;
@@ -63,10 +77,10 @@ public class RondServiceImpl implements RondService{
 
     }
 
-   /* @Override
-    public void addPointeauToRond(String rondName, String pointeauName) {
-        Ronds rond=rondRepository.findByName(rondName);
-        Pointeau pointeau=pointeauRepository.findByName(pointeauName);
-        rond.getPointeaux().add(pointeau);
-    }*/
+    @Override
+    public void addPointeauToRond(Long idRond, Long idPointeau) {
+        Ronds rond = rondRepository.findOneById(idRond);
+        Pointeau pointeau= pointeauRepository.findOneById(idPointeau);
+            rond.getPointeaux().add(pointeau);
+    }
 }

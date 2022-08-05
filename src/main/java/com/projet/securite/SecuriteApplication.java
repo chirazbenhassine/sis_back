@@ -44,14 +44,11 @@ public class SecuriteApplication {
 		//rondService.addPointeauToRond(rond.getName(),pointeau.getName());
 		//rond.getPointeaux().add(pointeau);*/
 	@Bean
-	CommandLineRunner run(UserService userService) {
+	CommandLineRunner run(UserService userService,SiteService siteService, RondService rondService, PointeauService pointeauService) {
 		return args -> {
 			userService.saveRole(new Role(null, "ROLE_USER"));
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 			userService.saveRole(new Role(null, "ROLE_CLIENT"));
-
-			//siteService.saveSite(new Site(null,"Auchan","Sartrouville"));
-			//siteService.saveSite(new Site(null,"Carrefour","Paris"));
 
 			userService.saveUser(new User(null, "Abdelli", "Isaac", "Isaacabd","1234", new ArrayList<>(), new ArrayList<>()));
 			userService.saveUser(new User(null, "Tijaou", "Bilel","Bileltj", "1234", new ArrayList<>(), new ArrayList<>()));
@@ -61,10 +58,27 @@ public class SecuriteApplication {
 			userService.addRoleToUser("Isaacabd", "ROLE_USER");
 			userService.addRoleToUser("Bileltj", "ROLE_ADMIN");
 			userService.addRoleToUser("Alibh", "ROLE_CLIENT");
+            Site site1 = new Site("Auchan","Sartrouville");
+            Site site2 = new Site("Carrefour","Paris");
+			siteService.saveSite(site1);
+			siteService.saveSite(site2);
 
-			/*userService.addSiteToUser("Alibh", "Auchan");
-			userService.addSiteToUser("Isaacabd", "Auchan");
-			userService.addRoleToUser("Bileltj", "Carrefour");*/
+			userService.addSiteToUser("Alibh", "Auchan");
+			userService.addSiteToUser("Bileltj", "Carrefour");
+
+
+			pointeauService.savePointeau(new Pointeau(null,"pointeau1"));
+			pointeauService.savePointeau(new Pointeau(null,"pointeau2"));
+
+			rondService.saveRond(new Ronds(null,"rond1",new ArrayList<>()));
+			rondService.saveRond(new Ronds(null,"rond2",new ArrayList<>()));
+
+			rondService.addPointeauToRond(Long.valueOf(1), Long.valueOf(2));
+			rondService.addPointeauToRond(1L, 2L);
+
+			siteService.addRondToSite(1L, 1L);
+			siteService.addRondToSite(1L, 2L);
+
 
 
 
