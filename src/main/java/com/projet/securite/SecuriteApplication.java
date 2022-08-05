@@ -58,9 +58,10 @@ public class SecuriteApplication {
 			userService.addRoleToUser("Isaacabd", "ROLE_USER");
 			userService.addRoleToUser("Bileltj", "ROLE_ADMIN");
 			userService.addRoleToUser("Alibh", "ROLE_CLIENT");
-
-			siteService.saveSite(new Site(null,"Auchan","Sartrouville"));
-			siteService.saveSite(new Site(null,"Carrefour","Paris"));
+            Site site1 = new Site("Auchan","Sartrouville");
+            Site site2 = new Site("Carrefour","Paris");
+			siteService.saveSite(site1);
+			siteService.saveSite(site2);
 
 			userService.addSiteToUser("Alibh", "Auchan");
 			userService.addSiteToUser("Bileltj", "Carrefour");
@@ -72,8 +73,11 @@ public class SecuriteApplication {
 			rondService.saveRond(new Ronds(null,"rond1",new ArrayList<>()));
 			rondService.saveRond(new Ronds(null,"rond2",new ArrayList<>()));
 
-			rondService.addPointeauToRond("rond1","pointeau2");
-			rondService.addPointeauToRond("rond1","pointeau1");
+			rondService.addPointeauToRond(Long.valueOf(1), Long.valueOf(2));
+			rondService.addPointeauToRond(1L, 2L);
+
+			siteService.addRondToSite(1L, 1L);
+			siteService.addRondToSite(1L, 2L);
 
 
 

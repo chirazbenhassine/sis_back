@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PointeauRepository extends JpaRepository<Pointeau, Long> {
     Pointeau findByName(String name);
+    Pointeau findOneById(Long id);
 
 }

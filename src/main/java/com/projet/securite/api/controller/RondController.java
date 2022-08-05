@@ -61,10 +61,15 @@ public class RondController {
         rondService.deleteRond(rondId);
         return  new ResponseEntity<String>("Rond deleted successfully",HttpStatus.OK);
     }
+    @PostMapping("/addPointeauToRond")
+    public ResponseEntity<Ronds> savePointeauToRond(@RequestBody PointeauToRondForm form) {
+        rondService.addPointeauToRond(form.getIdRond(),form.getIdPointeau());
+        return ResponseEntity.ok().body(rondService.getRondById(form.getIdRond()));
+    }
 
 }
-/*@Data
+@Data
 class PointeauToRondForm{
-    private String rondName;
-    private String pointeauName;
-}*/
+    private Long idRond;
+    private Long idPointeau;
+}

@@ -11,5 +11,5 @@ public interface RondService {
     Ronds getRondById(Long id); // GET BY ID
     Ronds updateRond(Ronds ronds, Long id); //UPDATE
     void deleteRond(Long id);
-    void addPointeauToRond(String rondName, String pointeauName);
+    void addPointeauToRond(Long idRond, Long idPoiteau);
 }

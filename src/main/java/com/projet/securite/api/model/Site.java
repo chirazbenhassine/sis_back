@@ -24,5 +24,12 @@ public class Site implements Serializable {
     @Column(name = "adresse_de_site")
     private String adresse;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="site_id", referencedColumnName = "id")
+        List<Ronds> ronds = new ArrayList<>();
 
+    public Site(String name, String adresse) {
+        this.name = name;
+        this.adresse = adresse;
+    }
 }

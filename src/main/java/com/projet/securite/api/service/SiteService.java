@@ -13,5 +13,6 @@ public interface SiteService {
     Site getSiteById(Long id); // GET BY ID
     Site updateSite(Site site, Long id); //UPDATE
     void deleteSite(Long id);
+    void addRondToSite(Long idSite, Long idRond);
 
 }

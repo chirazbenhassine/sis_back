@@ -21,6 +21,7 @@ import java.util.Optional;
 public class SiteServiceImpl implements  SiteService{
 
     private final SiteRepository siteRepository;
+    private final RondRepository rondRepository;
 
 
     @Override
@@ -61,6 +62,13 @@ public class SiteServiceImpl implements  SiteService{
         //Check if site exist with given id  is exist in DB
         Site existingSite = siteRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Site","Id", id));
         siteRepository.deleteById(id);
+    }
+
+    @Override
+    public void addRondToSite(Long idSite, Long idRond) {
+        Site site= siteRepository.findOneById(idSite);
+        Ronds rond=rondRepository.findOneById(idRond);
+        site.getRonds().add(rond);
     }
 
 

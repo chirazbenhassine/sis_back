@@ -77,33 +77,9 @@ public class RondServiceImpl implements RondService{
     }
 
     @Override
-    public void addPointeauToRond(String rondName, String pointeauName) {
-        Ronds rond = rondRepository.findByName(rondName);
-        Pointeau pointeau= pointeauRepository.findByName(pointeauName);
+    public void addPointeauToRond(Long idRond, Long idPointeau) {
+        Ronds rond = rondRepository.findOneById(idRond);
+        Pointeau pointeau= pointeauRepository.findOneById(idPointeau);
             rond.getPointeaux().add(pointeau);
-
-
-        /* Rond==user
-        pointe=role
-
-        User user = userRepo.findByUsername(username);
-        Role role = roleRepo.findByName(roleName);
-        user.getRoles().add(role);*/
-
     }
-
-   /* @Override
-    public void addPointeauToRond(String rondName, String pointeauName) {
-        Ronds rond=rondRepository.findByName(rondName);
-        Pointeau pointeau=pointeauRepository.findByName(pointeauName);
-        rond.getPointeaux().add(pointeau);
-    }*/
-
-
-   /* @Override
-    public void addRondToSite(String siteName,String rondName) {
-        Ronds rond = rondRepository.findByName(rondName);
-        Site site = siteRepository.findByName(siteName);
-        site.getRonds().add(rond);
-    }*/
 }

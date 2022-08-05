@@ -2,6 +2,8 @@ package com.projet.securite.api.controller;
 
 import com.projet.securite.api.model.Site;
 import com.projet.securite.api.service.SiteService;
+import com.projet.securite.authUser.model.User;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,4 +53,14 @@ public class SiteController {
     return  new ResponseEntity<String>("Site deleted successfully",HttpStatus.OK);
     }
 
+    @PostMapping("/addRondToSite")
+    public ResponseEntity<Site> saveRondToSite(@RequestBody RondToSiteForm form) {
+       siteService.addRondToSite(form.getIdSite(),form.getIdRond());
+        return ResponseEntity.ok().body(siteService.getSiteById(form.getIdSite()));
+    }
+}
+@Data
+class RondToSiteForm{
+    private Long idSite;
+    private Long idRond;
 }
