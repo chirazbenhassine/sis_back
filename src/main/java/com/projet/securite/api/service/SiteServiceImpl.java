@@ -7,6 +7,7 @@ import com.projet.securite.api.repository.RondRepository;
 import com.projet.securite.api.repository.SiteRepository;
 import com.projet.securite.authUser.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,8 +51,16 @@ public class SiteServiceImpl implements  SiteService{
         //need to check if site  with given id is exist in DB or not
         Site existingSite = siteRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Site","Id", id));
 
-        existingSite.setName(site.getName());
-        existingSite.setAdresse(site.getAdresse());
+        String name = site.getName();
+        String adresse = site.getAdresse();
+        if(name != null && name != "") {
+            existingSite.setName(site.getName());
+        }
+
+        if(adresse != null && adresse != "") {
+            existingSite.setAdresse(site.getAdresse());
+        }
+
         //Save in DB
         siteRepository.save(existingSite);
         return existingSite;

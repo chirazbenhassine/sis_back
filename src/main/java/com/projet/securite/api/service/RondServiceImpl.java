@@ -60,9 +60,10 @@ public class RondServiceImpl implements RondService{
     public Ronds updateRond(Ronds ronds, Long id) {
         //need to check if site  with given id is exist in DB or not
         Ronds existingRond = rondRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Rond","Id", id));
-
-        existingRond.setName(ronds.getName());
-
+        String name = ronds.getName();
+        if (name != null && name != ""){
+            existingRond.setName(ronds.getName());
+        }
         //Save in DB
         rondRepository.save(existingRond);
         return existingRond;
