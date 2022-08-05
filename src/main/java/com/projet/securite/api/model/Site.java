@@ -19,7 +19,7 @@ public class Site implements Serializable {
     @Id //specifies to primary key of the entity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nom_de_site", nullable = false)
+    @Column(name = "nom_de_site", nullable = false, unique = true)
     private String name;
     @Column(name = "adresse_de_site")
     private String adresse;

@@ -6,6 +6,7 @@ import com.projet.securite.api.model.Ronds;
 import com.projet.securite.api.model.Site;
 import com.projet.securite.api.repository.PointeauRepository;
 import com.projet.securite.api.repository.RondRepository;
+import com.projet.securite.api.repository.SiteRepository;
 import com.projet.securite.authUser.model.Role;
 import com.projet.securite.authUser.model.User;
 import com.projet.securite.authUser.repository.UserRepository;
@@ -24,6 +25,8 @@ public class RondServiceImpl implements RondService{
 
     private final RondRepository rondRepository;
     private  final PointeauRepository pointeauRepository;
+
+
 
     @Override
     public Ronds saveRond(Ronds ronds) {
@@ -45,6 +48,13 @@ public class RondServiceImpl implements RondService{
         }*/
         return rondRepository.findById(id).orElseThrow(()-> new RessourceNotFoundException("Rond","Id", id));
     }
+
+   /*@Override
+   public Ronds getRond(String name) {
+       Optional<Ronds> rond = rondRepository.findById(name);
+
+       return rondRepository.findByName(name).orElseThrow(()-> new RessourceNotFoundException("Rond","name", name));
+    }*/
 
     @Override
     public Ronds updateRond(Ronds ronds, Long id) {
@@ -87,5 +97,13 @@ public class RondServiceImpl implements RondService{
         Ronds rond=rondRepository.findByName(rondName);
         Pointeau pointeau=pointeauRepository.findByName(pointeauName);
         rond.getPointeaux().add(pointeau);
+    }*/
+
+
+   /* @Override
+    public void addRondToSite(String siteName,String rondName) {
+        Ronds rond = rondRepository.findByName(rondName);
+        Site site = siteRepository.findByName(siteName);
+        site.getRonds().add(rond);
     }*/
 }

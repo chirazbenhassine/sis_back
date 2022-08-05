@@ -20,10 +20,10 @@ public class Ronds implements Serializable {
         @Id //specifies to primary key of the entity
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
+        @Column(unique=true)
         private String name;
-
-       @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-       private Collection<Pointeau> pointeaux = new ArrayList<>();
+        @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+        private Collection<Pointeau> pointeaux = new ArrayList<>();
 
 
     }

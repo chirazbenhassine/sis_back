@@ -19,7 +19,7 @@ public class Pointeau implements Serializable {
     @Id //specifies to primary key of the entity
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "nom_de_pointeaux")
+    @Column(name = "nom_de_pointeaux", unique = true)
     private String name;
 
 

@@ -1,22 +1,27 @@
 package com.projet.securite.api.service;
 
 import com.projet.securite.api.exception.RessourceNotFoundException;
+import com.projet.securite.api.model.Ronds;
 import com.projet.securite.api.model.Site;
+import com.projet.securite.api.repository.RondRepository;
 import com.projet.securite.api.repository.SiteRepository;
+import com.projet.securite.authUser.repository.RoleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
+
+
 public class SiteServiceImpl implements  SiteService{
 
-    private SiteRepository siteRepository;
+    private final SiteRepository siteRepository;
 
-    public SiteServiceImpl(SiteRepository siteRepository) {
-        super();
-        this.siteRepository = siteRepository;
-    }
 
     @Override
     public Site saveSite(Site site) {
@@ -57,4 +62,6 @@ public class SiteServiceImpl implements  SiteService{
         Site existingSite = siteRepository.findById(id).orElseThrow( ()-> new RessourceNotFoundException("Site","Id", id));
         siteRepository.deleteById(id);
     }
+
+
 }

@@ -5,19 +5,18 @@ import com.projet.securite.api.model.Pointeau;
 import com.projet.securite.api.model.Ronds;
 import com.projet.securite.api.model.Site;
 import com.projet.securite.api.repository.PointeauRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class PointeauServiceImpl implements  PointeauService{
 
-    private PointeauRepository pointeauRepository;
-
-    public PointeauServiceImpl(PointeauRepository pointeauRepository) {
-        super();
-        this.pointeauRepository = pointeauRepository;
-    }
+    private final PointeauRepository pointeauRepository;
 
     @Override
     public Pointeau savePointeau(Pointeau pointeau) {
